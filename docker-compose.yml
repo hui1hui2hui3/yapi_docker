@@ -1,0 +1,15 @@
+mongo:
+    image: mongo
+    restart: always
+    volumes:
+        - ./data/mongodb:/data/db
+
+yapi:
+    build: ./
+    volumes:
+        - .:/code
+    ports:
+        - "9000:9000"
+        - "9090:9090"
+    links:
+        - mongo
